@@ -1,0 +1,36 @@
+.sidebar-container {
+  width: 250px; /* Fixed width for the sidebar */
+  height: 100vh; /* Full height of the viewport */
+  position: fixed; /* Docked to the left */
+  top: 0;
+  left: 0;
+  background-color: #343a40; /* Dark background */
+  color: white; /* Text color */
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  overflow-y: auto; /* Scrollable if content overflows */
+}
+
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-nav .btn {
+  text-align: left;
+  margin-bottom: 0.5rem;
+  color: white;
+  border-color: #6c757d; /* Light border */
+}
+
+.sidebar-nav .btn:hover {
+  background-color: #495057; /* Slightly lighter background on hover */
+}

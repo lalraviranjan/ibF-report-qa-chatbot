@@ -1,35 +1,49 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState } from 'react';
+import Sidebar from './components/Sidebar-component/Sidebar';
+import ChatScreen from './components/ChatScreen-component/ChatScreen';
+import './App.css'; // optional custom tweaks
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [chats, setChats] = useState(["Chat 1", "Chat 2"]);
+  const [selectedChat, setSelectedChat] = useState(null);
+  const [messages, setMessages] = useState([]);
+
+  const handleNewChat = () => {
+    const newChat = `Chat ${chats.length + 1}`;
+    setChats([newChat, ...chats]);
+    setSelectedChat(newChat);
+    setMessages([]);
+  };
+
+  const handleSendMessage = (msg) => {
+    if (msg.trim()) {
+      setMessages([...messages, { text: msg, sender: 'user' }]);
+    }
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="d-flex vh-100">
+      {/* Sidebar */}
+      <div className="sidebar-container bg-secondary text-white">
+        <Sidebar
+          chats={chats}
+          selectedChat={selectedChat}
+          setSelectedChat={setSelectedChat}
+          handleNewChat={handleNewChat}
+        />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+
+      {/* Chat Screen */}
+      <div className="chat-screen-container flex-grow-1">
+        <ChatScreen
+          selectedChat={selectedChat}
+          messages={messages}
+          onSendMessage={handleSendMessage}
+        />
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </div>
+  );
 }
 
-export default App
+export default App;
