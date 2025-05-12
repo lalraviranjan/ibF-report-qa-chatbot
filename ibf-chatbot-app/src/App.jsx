@@ -23,9 +23,9 @@ function App() {
   };
 
   return (
-    <div className="d-flex vh-100">
+    <div className="container-fluid vh-100 d-flex">
       {/* Sidebar */}
-      <div className="sidebar-container bg-secondary text-white">
+      <div className="sidebar-container text-white">
         <Sidebar
           chats={chats}
           selectedChat={selectedChat}

@@ -18,9 +18,14 @@ body, html, #root {
   width: 250px; /* Fixed width for the sidebar */
   height: 100vh; /* Full height of the viewport */
   flex-shrink: 0; /* Prevent shrinking */
+  position: fixed; /* Sidebar stays fixed on the left */
+  top: 0;
+  left: 0;
 }
 
 .chat-screen-container {
+  padding-left: 160px;
+  padding-right: 41px;
   flex-grow: 1; /* Take up remaining space */
   height: 100vh; /* Full height of the viewport */
   display: flex;

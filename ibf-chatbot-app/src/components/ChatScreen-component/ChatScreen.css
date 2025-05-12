@@ -9,9 +9,20 @@
 
 .chat-messages {
   flex-grow: 1;
-  overflow-y: auto;
+  overflow-y: auto; /* Make the container scrollable */
   padding: 1rem;
-  background-color: #212529; /* Slightly darker background for messages */
+}
+
+.message {
+  margin-bottom: 1rem;
+}
+
+.user-message {
+  text-align: right; /* Align user messages to the right */
+}
+
+.bot-message {
+  text-align: left; /* Align bot messages to the left */
 }
 
 .chat-input {

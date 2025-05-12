@@ -34,3 +34,7 @@
 .sidebar-nav .btn:hover {
   background-color: #495057; /* Slightly lighter background on hover */
 }
+
+.sidebar-inner {
+    border-radius: 10px;
+}
