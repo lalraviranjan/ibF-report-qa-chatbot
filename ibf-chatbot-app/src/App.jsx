@@ -5,7 +5,7 @@ import './App.css'; // optional custom tweaks
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
-  const [chats, setChats] = useState(["Chat 1", "Chat 2"]);
+  const [chats, setChats] = useState([]);
   const [selectedChat, setSelectedChat] = useState(null);
   const [messages, setMessages] = useState([]);
 

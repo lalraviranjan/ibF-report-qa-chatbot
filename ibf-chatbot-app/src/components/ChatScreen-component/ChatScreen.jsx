@@ -1,13 +1,21 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import './ChatScreen.css'; // Import the provided CSS
+import { v4 as uuidv4 } from 'uuid';
 
 const ChatScreen = ({ selectedChat }) => {
   const [input, setInput] = useState('');
   const [chatHistory, setChatHistory] = useState([]); // To store user and bot messages
   const [isTyping, setIsTyping] = useState(false); // To show typing animation
   const [dots, setDots] = useState(1); // To control the number of dots in the animation
+  const [sessionId, setSessionId] = useState(''); // State for dynamic session ID
   const bottomRef = useRef(null);
+
+  useEffect(() => {
+    // Generate a unique session ID when the component mounts
+    const newSessionId = uuidv4();
+    setSessionId(newSessionId);
+  }, []);
 
   useEffect(() => {
     // Automatically scroll to the bottom when chatHistory updates
@@ -92,7 +100,7 @@ const ChatScreen = ({ selectedChat }) => {
       setIsTyping(true);
 
       const payload = {
-        session_id: "ravi12345",
+        session_id: sessionId,
         user_input: input,
       };
 
@@ -136,7 +144,7 @@ const ChatScreen = ({ selectedChat }) => {
             className={`message ${msg.sender === 'user' ? 'user-message' : 'bot-message'}`}
           >
             <span className={`badge ${msg.sender === 'user' ? 'bg-primary' : 'bg-secondary'}`}>
-              {msg.sender === 'user' ? 'You' : 'Bot'}
+              {msg.sender === 'user' ? 'You' : 'IBFR'}
             </span>
             <div>
               {msg.sender === 'bot' ? formatResponse(msg.text) : <p>{msg.text}</p>}
@@ -145,7 +153,7 @@ const ChatScreen = ({ selectedChat }) => {
         ))}
         {isTyping && (
           <div className="message bot-message">
-            <span className="badge bg-secondary">Bot</span>
+            <span className="badge bg-secondary">IBFR</span>
             <div>Thinking{'.'.repeat(dots)}</div> {/* Animated dots */}
           </div>
         )}
